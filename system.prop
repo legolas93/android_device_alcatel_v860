@@ -2,6 +2,7 @@
 # system.prop for Vodafone Smart 2
 #
 
+persist.service.adb.enable=1
 
 #deox
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
@@ -49,7 +50,6 @@ net.dns2=8.8.4.4
 # Managing modem answere on switch from 2G to 3G
 ro.ril.ntmodeglobal=true
 
-ro.telephony.ril_class=samsung
 mobiledata.interfaces=pdp0,eth0,gprs,ppp0
 
 # camera
