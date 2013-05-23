@@ -1,0 +1,18 @@
+# mount point   fstype          device
+/sdcard         vfat            /dev/block/mmcblk0p1
+/system         yaffs2          system
+/custpack       yaffs2          custpack
+/cache          yaffs2          cache
+/misc           mtd             misc
+/boot           mtd             boot
+/recovery       mtd             recovery
+/modem          mtd             modem
+/bootloader     mtd             bootloader
+/tmp		tmpfs           tmpfs
+/data           yaffs2          userdata
+/sysparm_ind    mtd             sysparm_ind
+/comms          mtd             comms
+/dsp_pram       mtd             dsp_pram
+/dsp_dram       mtd             dsp_dram
+/FOTAFLAG       mtd             FOTAFLAG
+/bootloader2    mtd             bootloader2

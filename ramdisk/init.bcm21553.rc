@@ -1,0 +1,297 @@
+on boot
+
+    chown system system /sys/class/backlight/pwm-backlight.0/brightness
+    chown system system /sys/class/backlight/pwm-keypad-backlight.0/brightness
+
+    chmod 0777 /dev/bcm_kril
+    chmod 0777 /dev/bcm_vsp
+    chmod 0777 /dev/bcm_atc
+    chmod 0666 /dev/bcm_alsa_voip
+	chmod 0666 /dev/v3d
+    insmod /system/lib/modules/memalloc.ko
+    insmod /system/lib/modules/hx170dec.ko
+    insmod /system/lib/modules/h6270enc.ko
+	insmod /system/lib/modules/gememalloc.ko    
+	insmod /system/lib/modules/ge_drv.ko   
+    insmod /system/lib/modules/brcm_switch.ko
+    insmod /system/lib/modules/bcm_headsetsw.ko
+    chmod 0777 /dev/camera
+    chmod 0777 /dev/camera2
+    chown system system /sys/class/haptic/isa1000/level
+    chown system system /sys/class/haptic/isa1000/oneshot
+    chown system system /sys/class/haptic/isa1000/enable
+    chown system system /sys/bcm/cache
+
+#for LEDs
+	chown system system /sys/class/leds/blue/brightness
+	chown system system /sys/class/leds/blue/delay_on
+	chown system system /sys/class/leds/blue/delay_off
+	
+	chown system system /sys/class/leds/green/brightness
+	chown system system /sys/class/leds/green/delay_on
+	chown system system /sys/class/leds/green/delay_off
+	
+	chown system system /sys/class/leds/red/brightness
+	chown system system /sys/class/leds/red/delay_on
+	chown system system /sys/class/leds/red/delay_off
+	
+	chown system system /sys/class/leds/keypad_bl/brightness
+	chown system system /sys/class/leds/keypad_bl/delay_on
+	chown system system /sys/class/leds/keypad_bl/delay_off
+
+#for ASE application
+    mkdir /data/brcm
+    mkdir /data/brcm/ase
+    mkdir /data/brcm/ase/extras
+    mkdir /data/brcm/ase/scripts
+    chmod 0777 /data/brcm
+    chmod 0777 /data/brcm/ase
+    chmod 0777 /data/brcm/ase/extras
+    chmod 0777 /data/brcm/ase/scripts
+    copy /system/etc/adb.sh /data/brcm/ase/scripts/adb.sh
+    copy /system/etc/rndis.sh /data/brcm/ase/scripts/rndis.sh
+    copy /system/etc/logcfg.sh /data/brcm/ase/scripts/logcfg.sh
+    copy /system/etc/modem.sh /data/brcm/ase/scripts/modem.sh
+	copy /system/etc/logcmd /data/brcm/ase/scripts/logcmd
+	copy /system/etc/cplog_enable /data/brcm/ase/scripts/cplog_enable
+	copy /system/etc/logctrl.sh /data/brcm/ase/scripts/logctrl.sh
+	copy /system/etc/logctrl_en.sh /data/brcm/ase/scripts/logctrl_en.sh
+	copy /system/etc/logctrl_delay.sh /data/brcm/ase/scripts/logctrl_delay.sh
+
+    chmod 0777 /data/brcm/ase/scripts/adb.sh
+    chmod 0777 /data/brcm/ase/scripts/rndis.sh
+    chmod 0777 /data/brcm/ase/scripts/logcfg.sh
+    chmod 0777 /data/brcm/ase/scripts/modem.sh
+	chmod 0777 /data/brcm/ase/scripts/logcmd
+	chmod 0777 /data/brcm/ase/scripts/cplog_enable
+	chmod 0777 /data/brcm/ase/scripts/logctrl.sh
+	chmod 0777 /data/brcm/ase/scripts/logctrl_en.sh
+	chmod 0777 /data/brcm/ase/scripts/logctrl_delay.sh
+# permissions for motion sensor devices
+    chmod 0777 /dev/bma150_accl
+    chmod 0777 /dev/akm8975_dev
+    chmod 0777 /dev/akm8975
+
+# for kexec
+	chmod 755 /system/bin/kexec
+	chmod 0771 /data
+	chmod 0777 /data/kexec.sh
+
+#runSysCmd
+    mkdir /data/misc/utils 0777
+
+#permisssion for cacheops
+	chmod 0666 /dev/cache-ops 
+
+#DHCP Service init
+	setprop wifi.interface "eth0"
+
+	mkdir /system/etc/wifi 0770 wifi wifi
+#Mod by chenguoan for pr[215651] begin
+	chmod 0771 /system/etc/wifi
+#Mod by chenguoan for pr[215651] end
+	chmod 0777 /system/etc/wifi/wpa_supplicant.conf
+#	chmod 0777 /system/etc/wifi/nvram.txt
+#	chown wifi wifi /system/etc/wifi/nvram.txt
+	chown wifi wifi /system/etc/wifi/wpa_supplicant.conf
+	#wpa_supplicant control socket for android wifi.c (android private socket)
+#Mod by chenguoan for pr[205421] begin
+	mkdir /data/misc/wifi 0770 wifi wifi
+	mkdir /data/misc/wifi/sockets 0777 wifi wifi
+	chmod 0771 /data/misc/wifi/sockets
+	chmod 0771 /data/misc/wifi
+	chmod 0777 /data/misc/wifi/wpa_supplicant.conf
+	chown wifi wifi /data/misc/wifi
+	chown wifi wifi /data/misc/wifi/wpa_supplicant.conf
+   	mkdir /data/misc/dhcp 0770 dhcp dhcp
+   	chown dhcp dhcp /data/misc/dhcp
+	chmod 0771 /data/misc/dhcp
+#Mod by chenguoan for pr[205421] end
+
+	chmod 0777 /data/misc/wifi/wl
+	chown wifi wifi /data/misc/wifi/wl
+	chmod 0777 /data/misc/wifi/iperf
+	chown wifi wifi /data/misc/wifi/iperf
+	chmod 0777 /data/misc/wifi/nvram.txt
+	chown wifi wifi /data/misc/wifi/nvram.txt
+
+	# wpa_supplicant socket (unix socket mode)
+	mkdir /data/system/wpa_supplicant 0771 wifi wifi
+	chmod 0771 /data/system/wpa_supplicant
+	chown wifi wifi /data/system/wpa_supplicant
+
+    # Let wifi control BT_VREG_CTL GPIO
+    chown wifi wifi /sys/class/gpio/gpio21/value
+    chmod 0664 /sys/class/gpio/gpio21/value
+    
+# for bluetooth. change access rights as btld runs as bluetooth user
+    chown root bluetooth /dev/ttyS1
+    chmod 0660 /dev/ttyS1
+    chown root bluetooth /sys/class/rfkill/rfkill0
+    chown root bluetooth /sys/class/rfkill/rfkill0/state
+    chown root bluetooth /sys/class/rfkill/rfkill0/claim
+    chown root bluetooth /sys/class/rfkill/rfkill0/soft
+    chmod 0664 /sys/class/rfkill/rfkill0/state
+    chmod 0664 /sys/class/rfkill/rfkill0/claim
+    chmod 0664 /sys/class/rfkill/rfkill0/soft
+    chown root bluetooth /sys/class/sound/controlC0/FMDirectPlay
+    chmod 0664 /sys/class/sound/controlC0/FMDirectPlay
+    chown root net_bt_admin /sys/devices/system/cpu/cpufreq/bcm21553/dvfs
+    chmod 0664 /sys/devices/system/cpu/cpufreq/bcm21553/dvfs
+    setprop service.brcm.bt.pbap_mode btld
+    copy /system/etc/local.prop /data/local.prop
+    chown system bluetooth /data/local.prop
+    chmod 0660 /data/local.prop
+#    setprop service.brcm.bt.patchfile /system/bin/BCM2075C0_TestConfig_0017_TCL_CGPIO3.hcd
+
+
+#permissions for NFC
+	setprop ro.nfc.port "I2C"
+	chmod 0600 /dev/bcmi2cnfc
+	chown nfc nfc /dev/bcmi2cnfc
+	mkdir /data/bcmi2cnfc
+	chmod 0700 /data/bcmi2cnfc
+	chown nfc nfc /data/bcmi2cnfc
+	
+
+#for VT config
+    mkdir /data/vt 0777
+    chmod 0777 /system/etc/vt/3g324mConfig.val
+    chmod 0777 /system/etc/vt/testplay.3gp
+    chmod 0777 /system/etc/vt/testplay.jpg
+    chmod 0777 /system/etc/vt/testplay.bmp
+    copy /system/etc/vt/3g324mConfig.val /data/vt/3g324mConfig.val
+    copy /system/etc/vt/testplay.3gp /data/vt/testplay.3gp
+    copy /system/etc/vt/testplay.jpg /data/vt/testplay.jpg
+    copy /system/etc/vt/testplay.bmp /data/vt/testplay.bmp
+    chmod 0777 /data/vt/3g324mConfig.val
+    chmod 0777 /data/vt/testplay.3gp
+    chmod 0777 /data/vt/testplay.jpg
+    chmod 0777 /data/vt/testplay.bmp
+    chmod 0777 /mnt/sdcard/vt
+    chmod 0777 /dev/pmem_adsp
+
+    # Use misc partition for flash OTP access
+    chown root radio /dev/mtd/mtd8
+    chmod 0640 /dev/mtd/mtd8
+#for TP firmware upgrade
+    mkdir /data/misc/tp 0777
+    chmod 0777 /system/etc/firmware/tp_download
+    chmod 0777 /system/etc/firmware/tp_reset
+    chmod 0777 /system/etc/firmware/tp_cali
+    chmod 0777 /system/etc/firmware/tp.pix
+    chmod 0777 /system/etc/firmware/tp_read
+    chmod 0777 /system/etc/firmware/tp_write
+    copy /system/etc/firmware/tp_download /data/misc/tp/tp_download
+    copy /system/etc/firmware/tp_reset /data/misc/tp/tp_reset
+    copy /system/etc/firmware/tp_cali /data/misc/tp/tp_cali
+    copy /system/etc/firmware/tp.pix /data/misc/tp/tp.pix
+    copy /system/etc/firmware/tp_read /data/misc/tp/tp_read
+    copy /system/etc/firmware/tp_write /data/misc/tp/tp_write
+
+
+    chmod 0777 /data/misc/tp/tp_download
+    chmod 0777 /data/misc/tp/tp_reset
+    chmod 0777 /data/misc/tp/tp_cali
+    chmod 0777 /data/misc/tp/tp.pix
+    chmod 0777 /data/misc/tp/tp_read
+    chmod 0777 /data/misc/tp/tp_write
+
+
+# rename apanic files with timestamp
+service ap_log_ren /system/bin/sh /system/etc/apanic_rename.sh
+    oneshot
+
+#runSysCmd
+service runSysCmd /system/bin/runSysCmd /data/misc/utils/setusbmode.txt 70
+    oneshot
+
+# Make sure we startup btld before hcid
+service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -hp /dev/ttyS1 -lpm 1 -nice -7
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service gpsd /system/bin/glgps -c /system/etc/gps/glconfig4751.xml
+    user root
+    group root
+
+#STOPSHIP: Remove logwrapper and -d option before production
+service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -d -n
+    socket bluetooth stream 660 bluetooth bluetooth
+    socket dbus_bluetooth stream 660 bluetooth bluetooth
+    # init.rc does not yet support applying capabilities, so run as root and
+    # let bluetoothd drop uid to bluetooth with the right linux capabilities
+    group bluetooth net_bt_admin misc
+    disabled
+
+#DHCP
+
+#service wpa_supplicant /system/bin/wpa_supplicant -dd -Dwext -ieth0 -c /system/etc/wifi/wpa_supplicant.conf
+#	disabled
+#	oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant -dd -Dwext -ieth0 -c /data/misc/wifi/wpa_supplicant.conf
+#	socket eth0 dgram 777 wifi wifi
+#	disabled
+        user root
+        group wifi inet
+        socket wpa_eth0 dgram 660 wifi wifi
+        oneshot
+
+service dhcpcd /system/bin/dhcpcd -BKL eth0
+	disabled
+	oneshot
+
+on property:init.svc.wpa_supplicant=stopped
+	stop dhcpcd
+
+# Kexec enable
+service kexec /data/kexec.sh
+
+service dumpd /system/bin/dumpd
+	oneshot
+
+service usb_portd /system/bin/usb_portd
+        oneshot
+
+# atx daemon
+service atxd /system/bin/atxd
+    user root
+    group root
+#
+service tp_download /data/misc/tp/tp_download
+	disabled  
+  	oneshot
+service tp_reset /data/misc/tp/tp_reset
+	disabled  
+  	oneshot	
+service tp_cali /data/misc/tp/tp_cali
+	disabled  
+  	oneshot	
+
+# restore default log config, if sdcard absent.
+service logcfg_preconfig /system/bin/sh /system/etc/logcfg.sh preconfig 50
+  	oneshot	
+
+# CP logging disable in user build.
+service logctrl /system/bin/atx -f /system/etc/logcmd
+	disabled
+	oneshot
+
+on property:ro.secure=1
+	start logctrl
+
+#log sys add bgn  	
+service oemsh /system/bin/oemsh.sh    
+     user root    
+     disabled   
+     oneshot    
+on property:persist.sys.oem.enable=1    
+     start oemsh
+on property:persist.sys.oem.enable=0    
+     stop oemsh
+#log sys add end
+
+
