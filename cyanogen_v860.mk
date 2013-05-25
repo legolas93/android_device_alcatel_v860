@@ -32,5 +32,4 @@ PRODUCT_COPY_FILES += \
 
 # Release name and versioning
 PRODUCT_RELEASE_NAME := v860
-PRODUCT_VERSION_DEVICE_SPECIFIC :=
 -include vendor/cyanogen/products/common_versions.mk

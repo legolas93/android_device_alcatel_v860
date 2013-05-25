@@ -32,15 +32,6 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 PRODUCT_PACKAGES += \
     Torch \
 
-# Kernel modules
-#PRODUCT_COPY_FILES += \
-#    device/alcatel/v860/prebuilt/root/fsr.ko:root/fsr.ko \
-#    device/alcatel/v860/prebuilt/root/fsr_stl.ko:root/fsr_stl.ko \
-#    device/alcatel/v860/prebuilt/root/rfs_fat.ko:root/rfs_fat.ko \
-#    device/alcatel/v860/prebuilt/root/rfs_glue.ko:root/rfs_glue.ko \
-#    device/alcatel/v860/prebuilt/root/j4fs.ko:root/j4fs.ko \
-#    device/alcatel/v860/prebuilt/root/sec_param.ko:root/sec_param.ko
-
 # Board-specific init
 PRODUCT_COPY_FILES += \
     device/alcatel/v860/ramdisk/ueventd.rc:root/ueventd.rc \
