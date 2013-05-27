@@ -15,8 +15,6 @@
 # Inherit products
 $(call inherit-product, device/alcatel/bcm21553-common/common.mk)
 $(call inherit-product, vendor/alcatel/v860/vendor_blobs.mk)
-$(call inherit-product, build/target/product/languages_full.mk)
-$(call inherit-product, build/target/product/full_base.mk)
 
 # Add device package overlay
 DEVICE_PACKAGE_OVERLAYS += device/alcatel/v860/overlay
@@ -26,13 +24,18 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/cyanogen/overlay/mdpi
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # Add LDPI assets, in addition to MDPI
-    PRODUCT_LOCALES += ldpi mdpi
+	PRODUCT_LOCALES += ldpi mdpi
 
 # Torch
 PRODUCT_PACKAGES += \
-    Torch \
+	Torch \
 
 # Board-specific init
 PRODUCT_COPY_FILES += \
-    device/alcatel/v860/ramdisk/ueventd.rc:root/ueventd.rc \
-    device/alcatel/v860/ramdisk/init.bcm21553.rc:root/init.bcm21553.rc \
+    	device/alcatel/v860/ramdisk/ueventd.rc:root/ueventd.rc \
+    	device/alcatel/v860/ramdisk/init.bcm21553.rc:root/init.bcm21553.rc \
+    
+# Discard inherited values and use our own instead.
+PRODUCT_NAME := full_v860
+PRODUCT_DEVICE := v860
+PRODUCT_MODEL := VodafoneSmart2

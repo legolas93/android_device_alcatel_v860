@@ -25,7 +25,6 @@ include device/alcatel/bcm21553-common/BoardConfigCommon.mk
 # Board
 TARGET_BOARD_PLATFORM := bcm21553
 TARGET_BOOTLOADER_BOARD_NAME := v860
-TARGET_OTA_ASSERT_DEVICE := v860,VodafoneSmart2
 
 # Recovery
 BOARD_RECOVERY_HANDLES_MOUNT := true
@@ -35,12 +34,9 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 5242880
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 150363456
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 180355072
 BOARD_FLASH_BLOCK_SIZE := 4096
-TARGET_RECOVERY_INITRC := device/alcatel/v860/recovery.rc
-BOARD_LDPI_RECOVERY := true
-#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/alcatel/v860/recovery/recovery_ui.c
+
+TARGET_PROVIDES_INIT := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # Prebuilt kernel
 TARGET_PREBUILT_KERNEL := device/alcatel/bcm21553-common/prebuilt/kernel
-
-## Enable if you build a kernel, then disable the prebuilt kernel
-#TARGET_KERNEL_CONFIG := cyanogenmod_cooperve_defconfig

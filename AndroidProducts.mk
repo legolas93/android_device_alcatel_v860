@@ -18,4 +18,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/v860.mk
+    $(LOCAL_DIR)/full_v860.mk
