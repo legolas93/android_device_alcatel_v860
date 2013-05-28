@@ -34,7 +34,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     	device/alcatel/v860/ramdisk/ueventd.rc:root/ueventd.rc \
     	device/alcatel/v860/ramdisk/init.bcm21553.rc:root/init.bcm21553.rc \
-    	
+
+#Etc    	
 PRODUCT_COPY_FILES += \
     	device/alcatel/v860/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     	device/alcatel/v860/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
