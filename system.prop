@@ -10,9 +10,7 @@ dalvik.vm.startheapsize=24m
 dalvik.vm.dexopt-flags=m=y
 dalvik.vm.heapsize=64m
 dalvik.vm.checkjni=false
-dalvik.vm.dexopt-flags=m=y
 dalvik.vm.execution-mode=int:jit
-dalvik.vm.heapsize=64m
 dalvik.vm.dexopt-data-only=1
 
 rild.libpath=/system/lib/libbrcm_ril.so
