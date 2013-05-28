@@ -36,11 +36,11 @@ PRODUCT_COPY_FILES += \
     	device/alcatel/v860/ramdisk/init.bcm21553.rc:root/init.bcm21553.rc \
     	
 PRODUCT_COPY_FILES += \
-    	device/samsung/cooperve/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    	device/samsung/cooperve/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    	device/samsung/cooperve/prebuilt/etc/wifi/nvram.txt:system/etc/wifi/nvram.txt \
-    	device/samsung/cooperve/prebuilt/etc/wifi/wifi.conf:system/etc/wifi/wifi.conf \
-    	device/samsung/cooperve/prebuilt/lib/libnetutils.so:system/lib/libnetutils.so \
+    	device/alcatel/v860/prebuilt/etc/dhcpcd/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    	device/alcatel/v860/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    	device/alcatel/v860/prebuilt/etc/wifi/nvram.txt:system/etc/wifi/nvram.txt \
+    	device/alcatel/v860/prebuilt/etc/wifi/wifi.conf:system/etc/wifi/wifi.conf \
+    	device/alcatel/v860/prebuilt/lib/libnetutils.so:system/lib/libnetutils.so \
     
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := full_v860
